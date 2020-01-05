@@ -41,7 +41,7 @@ class CmuDb(object):
 
         rhymes = OrderedDict()
         pron_arr = pron.split('_')
-        for i in range(int(len(pron_arr)/2)):
+        for i in range(int(len(pron_arr)/2) + 1):
             if len(pron_arr) < 2:
                 continue
 
