@@ -10,7 +10,7 @@ from pymystem3 import Mystem
 def mystem(text):
     lines = []
     stem = Mystem()
-    for term in stem.analyze(text.replace('ё', 'е')):
+    for term in stem.analyze(text):
         text = term.get('text')
         analysis = term.get('analysis')
 
