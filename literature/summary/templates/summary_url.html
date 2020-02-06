@@ -1,0 +1,80 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <style>
+            * {
+                font-size: 12pt;
+                font-family: Verdana;
+            }
+            textarea, select, input[type=text] {
+                width: 100%;
+            }
+
+            textarea {
+                height: 300px;
+            }
+            
+            table {
+                width: 100%;
+            }
+        </style> 
+    </head>
+    
+    <script>
+        function loaded() {
+            document.getElementById('language').value = "{{language}}";
+            document.getElementById('algorithm').value = "{{algorithm}}";
+        }
+    </script>
+
+    <body onload="loaded()">
+        <form action="/literature/summary/url" method="POST">
+            <table border="1">
+                <tr>
+                    <td width="1%">Язык:</td>
+                    <td>
+                        <select name="language" id="language">
+                            <option value="russian">Русский</option>
+                            <option value="english">English</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Алгоритм:</td>
+                    <td>
+                        <select name="algorithm" id="algorithm">
+                            <option value="lex_rank">lex_rank</option>
+                            <option value="luhn">luhn</option>
+                            <option value="lsa">lsa</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="250px">Количество предложений в изложении:</td>
+                    <td>
+                        <input type="number" name="sentence_count" value={{sentence_count}}>
+                    </td>
+                </tr>
+                <tr align="center">
+                    <td width="250px">Ссылка для анализа:</td>
+                    <td>
+                        <input type="text" name="url" value={{url}}>
+                    </td>
+                </tr>
+                <tr align="center">
+                    <td colspan="2">
+                        <input type="submit" style="color: blue" value="Создать изложение">
+                    </td>
+                </tr>
+                {% if text_summary %}
+                <tr>
+                    <td colspan="2">
+                        <b>Результат:</b><br>
+                        <textarea>{{text_summary}}</textarea>
+                    </td>
+                </tr>
+                {% endif %}
+            </table>
+        </form>
+    </body>
+</html>
