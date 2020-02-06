@@ -19,7 +19,7 @@ def mystem(text):
 
             sex = re.search('муж|жен', gr)
             number = re.search('ед|мн', gr)
-            case = re.search('[\|\=](\w+),', gr)
+            case = re.search('[\|\=](им|род|дат|вин|твор|пр|парт|местн|зват)\W', gr)
 
             if sex and number and case:
                 info = '(%s род, %s число, %s падеж)' % (sex.group(0), number.group(0), case.group(1))
