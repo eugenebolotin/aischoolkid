@@ -1,5 +1,5 @@
 **Usage:**
 ```
-solve.py word_rus.txt пластилин
+python solve.py word_rus.txt пластилин
 ```
 
