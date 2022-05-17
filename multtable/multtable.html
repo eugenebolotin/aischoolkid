@@ -1,0 +1,80 @@
+<head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0"/>
+<style>
+    body {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+    input, select { font-size: 100%; }
+
+    .quiz__questions .row {
+        flex-wrap: nowrap;
+        align-items: center;
+    }
+    .quiz__questions label {
+        white-space: nowrap;
+    }
+</style>
+
+</head>
+
+<body onload='createQuiz()'>
+<script>
+var timer;
+
+function getTimestamp() {
+    return Math.floor(new Date().getTime() / 1000);
+}
+
+function startTimer() {
+    timer = getTimestamp();
+}
+
+function getTimer() {
+    return getTimestamp() - timer;
+}
+
+function getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+function createQuestion (a, b, i) {
+    return `<div class="row mb-2 mb-md-1 justify-content-center">
+                <label for="inputEmail3" class="col col-4 col-sm-3 col-md-2 col-xl-1 col-form-label col-form-label-lg">${a} * ${b} = </label>
+                <div class="col col-8 col-sm-9 col-md-10 col-xl-11">
+                  <input type="tel" class="form-control " id="answer${i}" pattern="${a*b}" oninvalid="this.setCustomValidity('Check that answer, please')" oninput="this.setCustomValidity('')" required>
+                </div>
+            </div>`
+}
+
+function createQuiz() {
+    quizform = document.querySelector(".quiz__questions");
+    for(i = 0; i < 10; i++) {
+        a = getRandomIntInclusive(2, 12);
+        b = getRandomIntInclusive(2, 12);
+        quizform.insertAdjacentHTML('beforeend', createQuestion(a, b, i))
+    }
+    startTimer();
+}
+
+function finishQuiz() {
+    result = getTimer();
+    alert("Your result is: " + result + " seconds");
+}
+</script>
+
+
+<form id="quizform" class="container quiz" onsubmit="finishQuiz()">
+    <div class="row justify-content-center mt-4 mb-4 mt-md-1 mb-md-2">
+        <img class="col col-7 col-md-4 col-lg-3 col-xl-2 col-xxl-2" src="https://media4.giphy.com/media/Rn2X7q10dAYelQCViJ/200.gif" />
+    </div>
+    <div class="quiz__questions">
+    </div>
+    <button type="submit" class="btn btn-primary">Done</button>
+</form>
+</body>
+
