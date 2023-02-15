@@ -22,4 +22,4 @@ qrcode==6.0
 requests==2.21.0
 six==1.11.0
 urllib3==1.26.5
-Werkzeug==0.16.0
+Werkzeug==2.2.3
