@@ -21,8 +21,8 @@ numpy==2.5.4
 pycountry==26.2.16
 regex==2026.9.29
 requests==2.34.2
-setuptools==81.0.0
-sumy==0.13.0
+setuptools==84.2.1
+sumy==0.12.0
 tqdm==4.70.1
 urllib3==2.8.0
 werkzeug==3.1.9
